@@ -1,0 +1,22 @@
+{
+  "name": "hrisbackend",
+  "version": "1.0.0",
+  "description": "Backend application for HRIS Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lanzruiz/hrisbackend.git"
+  },
+  "keywords": [
+    "HRISBACKEND"
+  ],
+  "author": "Lanz Ruiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lanzruiz/hrisbackend/issues"
+  },
+  "homepage": "https://github.com/Lanzruiz/hrisbackend#readme"
+}
