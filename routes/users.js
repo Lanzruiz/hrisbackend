@@ -4,6 +4,9 @@ const usersController = require('../controller/person');
 
 const router = express();
 
-router.get('/users', usersController.getUsers);
+
+
+router.get('/users/list', usersController.getUsers);
+router.post('/users/create', usersController.createUser);
 
 module.exports = router;
