@@ -1,9 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 
-const usersController = require('../controller/login');
+const authController = require('../controller/login');
+
 
 const router = express();
 
-router.post('/login', usersController.createUser);
+router.post('/login', authController.getAuth);
 
 module.exports = router;
