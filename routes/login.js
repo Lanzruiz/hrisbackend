@@ -9,7 +9,7 @@ const router = express();
 //router.post('/login', authController.getToken);
 
 router.post('/login', (req, res)=>{
-    res.send(200).json({sessionToken: 'lsfjlskfjalsaekjdakjsdsjfasds'});
+    res.status(200).json({sessionToken: 'lsfjlskfjalsaekjdakjsdsjfasds'});
 });
 
 module.exports = router;
