@@ -6,7 +6,9 @@ const loginController = require('../controller/login');
 const router = express();
 
 
-
+router.get('/users/test', (req, res)=>{
+    res.send('test');
+})
 router.get('/users/list', loginController.getAuth, usersController.getUsers);
 router.post('/users/create', loginController.getAuth, usersController.createUser);
 
