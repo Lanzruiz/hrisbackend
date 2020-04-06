@@ -8,7 +8,7 @@ const router = express();
 
 //router.post('/login', authController.getToken);
 
-router.post('/login', ()=>{
+router.post('/login', (req, res)=>{
     res.send(200).json({sessionToken: 'lsfjlskfjalsaekjdakjsdsjfasds'});
 });
 
