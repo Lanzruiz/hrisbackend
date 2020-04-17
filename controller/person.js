@@ -1,10 +1,9 @@
 var person = require('../model/person');
 
-exports.getUsers = (req, res, next) => {
-  res.status(200).json({name: 'Lanz', age: 32, email: 'Lanzruizdesigns@gmail.com'});
+const fname = "Lanz";
+const lname = "Ruiz";
+const mname = "Bocado";
 
-}
-
-exports.create = (req, res, next) => {
-  person.create();
-}
+exports.create = (res, fname, lname, result =>{
+    res.status(200).json({result});
+});

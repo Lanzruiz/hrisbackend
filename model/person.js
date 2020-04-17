@@ -1,10 +1,11 @@
 var db = require('../util/db');
 
 
-const create = () => {
-    db.query('INSERT INTO PERSON (firstname) VALUES ("Lanz Ruiz")', function (error, results, fields) {
+const create = (fname, lname, callback) => {
+
+    db.query('INSERT INTO PERSON (firstname, lastname, middle) VALUES ("Lanz", "Ruiz", "Bocado")', function (error, results, fields) {
         if (error) throw error;
-        console.log('The solution is: ', results[0].solution);
+        callback({result: 'success'});
     });
 }
 
