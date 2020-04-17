@@ -3,7 +3,7 @@ const usersRoutes = require('./routes/users');
 const authRoutes = require('./routes/login');
 const bodyParse = require('body-parser');
 var cors = require('cors');
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 
 
 const app = express();

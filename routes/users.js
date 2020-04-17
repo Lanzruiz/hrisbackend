@@ -1,5 +1,5 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const usersController = require('../controller/person');
 const loginController = require('../controller/login');
 
