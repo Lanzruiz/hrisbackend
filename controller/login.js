@@ -1,14 +1,39 @@
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser')
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
+const hashpassword = (password, callback) => {
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+        // Store hash in your password DB.
+        callback(hash);
+    });
+}
+
 exports.getToken = (req, res, next) => {
     //res.status(200).json({name: 'Lanz', age: 32, email: 'Lanzruizdesigns@gmail.com'});
-    const user = {
-        user: req.body.username
-    }
 
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-    res.json({ accessToken: accessToken});
+    hashpassword(req.body.password, (hash)=>{
+
+        if(req.body.username === 'Admin' && req.body.password === 'Admin') {
+
+            const user = {
+                user: req.body.username,
+                password: hash
+            }
+
+            const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+            res.json({ accessToken: accessToken});
+
+        }else {
+            res.status(403).send({status: 'Not Admin'});
+        }    
+    })
+
+    
 
   
 }
