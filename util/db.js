@@ -8,5 +8,26 @@ var pool  = mysql.createPool({
   database        : process.env.DB_NAME
 });
  
- 
+
+const create = (data) => {
+
+    // pool.query(`INSERT INTO person (firstname, lastname, middlename, contact, email, dateofbirth, address)  VALUES ?`,[data], function (error, results) {
+    //    if (error) throw error;
+    //    callback({result: 'success'});
+   // });
+
+   return new Promise((resolve, reject) => {
+        var query = connection.query('INSERT INTO users SET ?', data, function (error, results, fields) {
+            try {
+                resolve(data);
+            } catch(error) {
+                reject(error)
+            }
+        
+        });
+   });
+
+}
+
+
 module.exports = pool;

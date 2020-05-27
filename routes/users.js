@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const usersController = require('../controller/person');
+const usersController = require('../controller/user');
 const loginController = require('../controller/login');
 
 const router = express();
 
-router.post('/users/create', loginController.getAuth, usersController.create);
+router.post('/api/v1/users', usersController.add);
 
 module.exports = router;
