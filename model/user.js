@@ -1,17 +1,19 @@
 var db = require('../util/db');
 
 
-const create = (data) => {
+const create = async (data) => {
 
-  
-    db.create(data, 'users', function (error, results, fields) {
-        try {
-            return results
-        } catch(error) {
-            return error;
-        }
-        
-     })
+    return new Promise((resolve, reject) => {
+
+        db.create(data, 'users').then((err, results) => {
+            try {
+                resolve(result);
+            } catch(error) {
+                reject(err)
+            }
+            
+        });
+    });
          
     
 }
@@ -23,11 +25,11 @@ const findOne = async (Username, callback) => {
 
     return new Promise((resolve, reject) => {
 
-        db.search(query, value, 'users').then(result => {
+        db.search(query, value, 'users').then((result, err) => {
             try {
                 resolve(result);
             } catch(error) {
-                reject(error)
+                reject(err)
             }
         });
     });

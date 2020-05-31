@@ -27,3 +27,7 @@ exports.add = async (req, res) => {
     
 
 }
+
+exports.profile = async (req, res) => {
+   res.send('Your are in user controller')
+}
