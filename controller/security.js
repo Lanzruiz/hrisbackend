@@ -20,9 +20,16 @@ exports.getToken = async (req, res, next) => {
 
       //2. verify the password
       if(securityResult == true) {
+
             //generate AccessToken
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-            res.json({status: 200, accessToken: accessToken});
+            const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+
+            //console.log(result);
+
+            //3. store the refresh token
+            await user.storeRefreshToken(result[0].Id, refreshToken);
+            res.json({status: 200, accessToken: accessToken, refreshToken: refreshToken});
       } else {
             res.sendStatus(403)
       }

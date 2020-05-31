@@ -58,17 +58,13 @@ const search = (query, data, table) => {
 
 
 
-const update = (data) => {
+const update = (query, data, table) => {
 
     return new Promise((resolve, reject) => {
-         var query = connection.query('INSERT INTO users SET ?', data, function (error, results, fields) {
-             try {
-                 resolve(data);
-             } catch(error) {
-                 reject(error)
-             }
-         
-         });
+         //"UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
+        var query = connection.query("UPDATE "+table+" SET "+data+" WHERE "+query, function (err, result) {
+            console.log(result);
+        });
     });
  
  }

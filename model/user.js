@@ -18,7 +18,7 @@ const create = async (data) => {
     
 }
 
-const findOne = async (Username, callback) => {
+const findOne = async (Username) => {
 
     let query = "Username = ";
     let value = Username;
@@ -38,7 +38,27 @@ const findOne = async (Username, callback) => {
     
 }
 
+const storeRefreshToken = (Userid, hash) => {
+
+    const value = {
+        Userid: Userid,
+        RefreshToken: hash
+    }
+
+    return new Promise((resolve, reject) => {
+
+        db.create(value, 'users_access').then((result, err) => {
+            try {
+                resolve(result);
+            } catch(error) {
+                reject(err)
+            }
+        });
+    });
+}
+
 module.exports = {
     create,
-    findOne
+    findOne,
+    storeRefreshToken
 };
