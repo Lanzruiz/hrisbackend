@@ -1,18 +1,29 @@
-const person = require('../model/user');
-const PasswordGenerator = require('../util/hash');
+const user = require('../model/user');
+const hash = require('../util/hash');
 const bodyParser = require('body-parser')
 
-exports.add = (req, res, next) => {
+
+
+exports.add = async (req, res) => {
+
+    const password =  await hash.GenerateHash(req.body.password);
     const users  = {
         FirstName: req.body.firstname, 
         LastName: req.body.lastname,
-        Username: req.body.Username,
-        Password: "ewljrhwherwe"
+        Username: req.body.username,
+        Password: password
     };
     
-    const result = person(users).then(result => {
-       res.status(200).send(result);
-    });
+    const result = await user.findOne(req.body.username);
 
+    if(result.length < 1) {
+        const result = user.create(users);
+        res.sendStatus(200)
+    }else {
+        res.sendStatus(403)
+    }
+    
+
+    
 
 }

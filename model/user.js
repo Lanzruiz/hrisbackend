@@ -1,27 +1,42 @@
 var db = require('../util/db');
 
 
-
 const create = (data) => {
 
-   // db.query(`INSERT INTO person (firstname, lastname, middlename, contact, email, dateofbirth, address)  VALUES ?`,[data], function (error, results) {
-   //     if (error) throw error;
-   //     callback({result: 'success'});
-   // });
+  
+    db.create(data, 'users', function (error, results, fields) {
+        try {
+            return results
+        } catch(error) {
+            return error;
+        }
+        
+     })
+         
     
-    return new Promise(function (resolve, reject){
-        //readFile(filename, 'utf8').done(function (res){
-          db.create(data, function (error, results, fields) {
+}
+
+const findOne = async (Username, callback) => {
+
+    let query = "Username = ";
+    let value = Username;
+
+    return new Promise((resolve, reject) => {
+
+        db.search(query, value, 'users').then(result => {
             try {
-                resolve(results);
+                resolve(result);
             } catch(error) {
                 reject(error)
             }
-        
-        })
-         
+        });
     });
+
+
+    
 }
 
-
-module.exports = create;
+module.exports = {
+    create,
+    findOne
+};
